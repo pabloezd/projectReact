@@ -3,12 +3,14 @@ import './App.css';
 import NavBar from './components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ItemListCointainer from './components/ItemListCointainer';
+import ItemDetailContainer from './components/ItemDetailCointainer';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <ItemListCointainer greeting="Bienvenido a ferretería PALO" />
+      {/* <ItemListCointainer greeting="Bienvenido a ferretería PALO" /> */}
+      <ItemDetailContainer />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
