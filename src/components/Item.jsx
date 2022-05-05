@@ -1,7 +1,8 @@
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
-const Item = ({ image, title, price }) => {
+const Item = ({ image, title, price , id}) => {
     return (
       <>
           <Card style={{ width: '18rem' }}>
@@ -11,9 +12,10 @@ const Item = ({ image, title, price }) => {
               <Card.Text>
                 ${price}
               </Card.Text>
+              <Link to={"/item/" + id}>Ver Detalle</Link>
               <ItemCount stock={5} initial={1}/>
             </Card.Body>
-          </Card>        
+          </Card>     
       </>
     );
   };

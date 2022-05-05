@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from "react";
-import ItemList from "./ItemList";
-import getData from "../services/getData";
+import ItemList from ".././components/ItemList";
+import getData from ".././services/getData";
+import { Stack } from "react-bootstrap";
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
@@ -15,7 +16,12 @@ const ItemListContainer = ({ greeting }) => {
   return (
     <>
       <h2>{greeting}</h2>
+      <br />
+      <Stack direction="horizontal" gap={3}>
+      <div className="bg-light border ms-auto"></div>
       <ItemList products={products} />
+      <div className="bg-light border ms-auto"></div>
+      </Stack>
     </>
   );
 };

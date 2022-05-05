@@ -12,8 +12,9 @@ function ItemDetail ({ item }) {
             <div>
                 <div className="right">
                     <div className="info-container">
-                        <h2> { item?.title} </h2>
-                        <p>{ item?.price}</p>
+                        <h2> {item?.title} </h2>
+                        <p>{item?.price}</p>
+                        <p>Item# {item?.id}</p>
                         <div className="count-container">
                         <ItemCount stock={5} initial={1}/>
                         </div>
