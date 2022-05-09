@@ -1,7 +1,14 @@
 import React from "react";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ItemCount from "./ItemCount";
+import { Button } from "react-bootstrap";
 
 function ItemDetail ({ item }) {
+    const [cantidadDeProductos, setCantidadDeProductos] = useState(null);
+    function addHandler (quantityToAdd) {
+        setCantidadDeProductos(quantityToAdd);
+    }
     return (
         <div className="item-detail">
             <div className="left">
@@ -16,15 +23,14 @@ function ItemDetail ({ item }) {
                         <p>{item?.price}</p>
                         <p>Item# {item?.id}</p>
                         <div className="count-container">
-                        <ItemCount stock={5} initial={1}/>
+                        {cantidadDeProductos ?
+                         <Button variant="warning" ><Link to='/cart'>Comprar ({ cantidadDeProductos } unidades)</Link></Button> :
+                         <ItemCount initial={0} stock={item.stock} onAdd={addHandler} />
+                        }
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     )
 }
