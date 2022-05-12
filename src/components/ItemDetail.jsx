@@ -1,14 +1,17 @@
 import React from "react";
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CartContext from '../store/cart-context';
 import ItemCount from "./ItemCount";
 import { Button } from "react-bootstrap";
 
 function ItemDetail ({ item }) {
-    const [cantidadDeProductos, setCantidadDeProductos] = useState(null);
-    function addHandler (quantityToAdd) {
-        setCantidadDeProductos(quantityToAdd);
+    const cartCtx = useContext(CartContext);
+
+    function addHandler(quantityToAdd) {
+        cartCtx.addProduct({quantity: quantityToAdd, ...item});
     }
+
     return (
         <div className="item-detail">
             <div className="left">
@@ -23,10 +26,19 @@ function ItemDetail ({ item }) {
                         <p>{item?.price}</p>
                         <p>Item# {item?.id}</p>
                         <div className="count-container">
-                        {cantidadDeProductos ?
-                         <Button variant="warning" ><Link to='/cart'>Comprar ({ cantidadDeProductos } unidades)</Link></Button> :
-                         <ItemCount initial={0} stock={item.stock} onAdd={addHandler} />
-                        }
+                        <ItemCount initial={0} stock={item.stock} onAdd={addHandler} />
+                        <Button variant="warning" onClick={() => console.log(cartCtx.products)} >Imprimir carrito</Button>
+                        <Button variant="warning" onClick={() => cartCtx.removeProduct(item.id)} >Remove product</Button>
+                        <Button variant="warning" onClick={() => cartCtx.clear()} >Clear</Button>
+                        <Button variant="warning" onClick={() => console.log(cartCtx.isInCart(item.id))} >Is in cart</Button>
+                        <Button variant="warning" onClick={() => console.log(cartCtx.getCartQuantity())} >Quantity</Button>
+                        {cartCtx.products.length &&
+                        <button onClick={() => console.log(cartCtx)}>
+                            <Link to='/cart'>
+                                Terminar compra ({ cartCtx.getCartQuantity() } items)
+                            </Link>
+                        </button>
+                    }
                         </div>
                     </div>
                 </div>
