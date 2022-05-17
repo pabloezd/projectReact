@@ -1,8 +1,15 @@
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ItemCount from "./ItemCount";
+// import ItemCount from "./ItemCount";
+import React, { useContext } from 'react';
+import CartContext from '.././store/cart-context';
+import Bubble from './Bubble';
+import './Item.css';
+import { Button } from "react-bootstrap";
 
-const Item = ({ image, title, price , id}) => {
+const Item = ({ item , image, title, price, id}) => {
+  // function Item({ item  }) {
+  const cartCtx = useContext(CartContext);
     return (
       <>
           <Card style={{ width: '18rem' }}>
@@ -13,7 +20,13 @@ const Item = ({ image, title, price , id}) => {
                 ${price}
               </Card.Text>
               <Link to={"/item/" + id}>Ver Detalle</Link>
-              <ItemCount stock={5} initial={1}/>
+              <div className='bubble-add'>
+              <Button variant="warning"> 
+               <Bubble isButton onBubbleClick={() => cartCtx.addProduct({quantity: 1, ...item})}>+</Bubble>
+               </Button>
+             </div>
+          {/* <ItemCount stock={5} initial={1}/> */}
+             {/* <div className='footer'>${ price }</div> */}
             </Card.Body>
           </Card>     
       </>

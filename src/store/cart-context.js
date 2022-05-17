@@ -6,7 +6,8 @@ const CartContext = createContext({
     removeProduct: () => {},
     clear: () => {},
     isInCart: () => {},
-    getCartQuantity: () => {}
+    getCartQuantity: () => {},
+     getTotalPrice: () => {}
 });
 
 export const CartContextProvider = ({ children }) => {
@@ -44,6 +45,12 @@ export const CartContextProvider = ({ children }) => {
         }, 0)
     }
   
+    const getTotalPrice = () => {
+        return productList.reduce((total, value) => {
+            return total + value.price*value.quantity
+        }, 0)
+    }
+
     return (
         <CartContext.Provider value={{
             products: productList,
@@ -51,7 +58,8 @@ export const CartContextProvider = ({ children }) => {
             removeProduct,
             clear,
             isInCart,
-            getCartQuantity
+            getCartQuantity,
+            getTotalPrice
         }}>
             {children}
         </CartContext.Provider>

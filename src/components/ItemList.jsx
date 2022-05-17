@@ -13,3 +13,14 @@ const ItemList = ({ products }) => {
   );
 };
 export default ItemList;
+
+
+// function ItemList({ items }) {
+//   return (
+//       <div className='item-list'>
+//           {items.map(item => <Item id={item.id} image={item.image} title={item.title} price={item.price} />)}
+//       </div>
+//   )
+// }
+
+// export default ItemList

@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { Button } from "react-bootstrap";
 
 const ItemCount = ({ stock, initial , onAdd }) => {
+  console.log('Se renderizo ItemCount');
+
   //Lógica
   const [count, setCount] = useState(initial);
 
@@ -42,6 +44,6 @@ const ItemCount = ({ stock, initial , onAdd }) => {
     </div>
   );
 };
-export default ItemCount;
+export default React.memo(ItemCount);
 
 
