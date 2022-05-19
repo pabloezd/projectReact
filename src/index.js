@@ -5,6 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { CartContextProvider } from './store/cart-context';
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCRuEzPg89XxTGL1YDLW_5z77sdRoo8bVw",
+  authDomain: "proyectoreact-c8a5b.firebaseapp.com",
+  projectId: "proyectoreact-c8a5b",
+  storageBucket: "proyectoreact-c8a5b.appspot.com",
+  messagingSenderId: "192430127704",
+  appId: "1:192430127704:web:900f74623ec5982604682d"
+};
+
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

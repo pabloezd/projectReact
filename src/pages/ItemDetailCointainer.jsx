@@ -2,6 +2,8 @@ import React from "react";
 import { useContext, useState, useMemo, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import ItemDetail from ".././components/ItemDetail";
+import { collection, getDocs, getFirestore, query, where, limit } from 'firebase/firestore';
+
 
 function getItem(id) {
     const myPromise = new Promise((resolve, reject) => {
